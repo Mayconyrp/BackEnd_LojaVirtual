@@ -22,7 +22,8 @@ export class UsuariosController {
 
   @Get()
   findAll() {
-    return this.usuariosService.findAll();
+    const usuarios = this.usuariosService.findAll();
+    return usuarios;
   }
 
   @Get(':id')
@@ -31,8 +32,8 @@ export class UsuariosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuariosService.update(+id, updateUsuarioDto);
+  update(@Param('id') id: number, @Body() updateUsuarioDto: UpdateUsuarioDto) {
+    return this.usuariosService.update(id, updateUsuarioDto);
   }
 
   @Delete(':id')

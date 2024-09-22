@@ -17,9 +17,10 @@ export class CreateUsuarioDto {
   @IsNotEmpty()
   senha: string;
 
-  @IsDate()
+  /* @IsDate()
   criadoEm: Date;
 
   @IsDate()
   atualizadoEm: Date;
+  */
 }
