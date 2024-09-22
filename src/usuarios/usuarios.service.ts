@@ -15,14 +15,13 @@ export class UsuariosService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+    return this.repository.findOne(id);
   }
-
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
     return this.repository.update(id, updateUsuarioDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} usuario`;
+    return this.repository.remove(id);
   }
 }
