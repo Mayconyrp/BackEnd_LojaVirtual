@@ -17,9 +17,11 @@ async function bootstrap() {
 
   // Configurar o Swagger
   const config = new DocumentBuilder()
-    .setTitle('API Example')
+    .setTitle('E-Commer API')
     .setDescription('API description')
     .setVersion('1.0')
+    .addTag('usuarios')
+    .addTag('categorias')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
