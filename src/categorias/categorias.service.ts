@@ -14,7 +14,9 @@ export class CategoriasService {
   findAll() {
     return this.repository.findAll();
   }
-
+  findCategoriaWithProdutosById(id: number) {
+    return this.repository.findCategoriaWithProdutosById(id);
+  }
   findOne(id: number) {
     return this.repository.findOne(id);
   }

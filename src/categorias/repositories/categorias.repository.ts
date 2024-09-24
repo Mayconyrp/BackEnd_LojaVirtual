@@ -23,7 +23,15 @@ export class CategoriasRepository {
   async findAll(): Promise<CategoriaEntity[]> {
     return this.prisma.categoria.findMany();
   }
-
+  // Método para encontrar uma categoria pelo ID com seus produtos relacionados
+  async findCategoriaWithProdutosById(id: number): Promise<CategoriaEntity> {
+    return this.prisma.categoria.findUnique({
+      where: { id }, // Filtra pelo ID da categoria
+      include: {
+        produtos: true, // Inclui os produtos relacionados à categoria
+      },
+    });
+  }
   // Método para encontrar uma única categoria pelo ID
   async findOne(id: number): Promise<CategoriaEntity> {
     return this.prisma.categoria.findUnique({
