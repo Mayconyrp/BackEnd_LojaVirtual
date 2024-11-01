@@ -1,3 +1,29 @@
+## Descrição do Projeto
+
+Bem-vindo à **API de E-commerce**, uma solução robusta e escalável desenvolvida com o **NestJS**, um framework inovador para construção de aplicações eficientes em Node.js. Este projeto visa fornecer uma plataforma completa para gerenciamento de produtos, com foco em segurança, desempenho e experiência do usuário.
+
+### Funcionalidades Destacadas
+
+- **Autenticação e Autorização Segura**: Implemente o padrão **JSON Web Tokens (JWT)** para garantir que as interações com a API sejam seguras. Usuários e administradores podem fazer login de maneira eficiente, com segurança reforçada nas rotas que exigem credenciais.
+
+- **Gerenciamento de Acesso Granular**: Diferencie claramente as permissões entre **usuários comuns** e **administradores**. Essa abordagem permite um controle mais preciso sobre as operações que cada tipo de usuário pode executar, assegurando que dados sensíveis permaneçam protegidos.
+
+- **CRUD Completo para Produtos**: Permita a criação, leitura, atualização e exclusão de produtos de forma intuitiva e eficiente. A API facilita o gerenciamento de inventário, possibilitando que administradores adicionem ou editem produtos conforme necessário.
+
+- **Estruturação por Categorias**: Organize produtos em **categorias**, melhorando a navegabilidade e a descoberta de itens na plataforma. Isso proporciona aos usuários uma experiência de compra mais fluida e agradável.
+
+- **Documentação Interativa com Swagger**: A integração com **Swagger** oferece uma interface visual para explorar a API. Desenvolvedores e usuários podem testar endpoints diretamente na documentação, facilitando a compreensão da funcionalidade e a utilização da API.
+
+### Visão do Projeto
+
+O objetivo desta API é criar uma base sólida para o desenvolvimento de soluções de E-commerce, incorporando princípios de **arquitetura de software** e as melhores práticas de segurança de dados. A modularidade e a flexibilidade do NestJS permitem a fácil expansão e adaptação do sistema, tornando-o ideal para atender a diversas necessidades empresariais.
+
+Este projeto também serve como um recurso educacional, proporcionando uma oportunidade de aprendizado sobre desenvolvimento de aplicações com Node.js e NestJS, bem como a implementação de autenticação segura e controle de acesso.
+
+A **API de E-commerce** é mais do que uma simples ferramenta; é um passo em direção à criação de experiências de compra excepcionais e seguras, preparando o terreno para inovações futuras no comércio eletrônico.
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -71,28 +97,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-
-## Descrição do Projeto
-
-Bem-vindo à **API de E-commerce**, uma solução robusta e escalável desenvolvida com o **NestJS**, um framework inovador para construção de aplicações eficientes em Node.js. Este projeto visa fornecer uma plataforma completa para gerenciamento de produtos, com foco em segurança, desempenho e experiência do usuário.
-
-### Funcionalidades Destacadas
-
-- **Autenticação e Autorização Segura**: Implemente o padrão **JSON Web Tokens (JWT)** para garantir que as interações com a API sejam seguras. Usuários e administradores podem fazer login de maneira eficiente, com segurança reforçada nas rotas que exigem credenciais.
-
-- **Gerenciamento de Acesso Granular**: Diferencie claramente as permissões entre **usuários comuns** e **administradores**. Essa abordagem permite um controle mais preciso sobre as operações que cada tipo de usuário pode executar, assegurando que dados sensíveis permaneçam protegidos.
-
-- **CRUD Completo para Produtos**: Permita a criação, leitura, atualização e exclusão de produtos de forma intuitiva e eficiente. A API facilita o gerenciamento de inventário, possibilitando que administradores adicionem ou editem produtos conforme necessário.
-
-- **Estruturação por Categorias**: Organize produtos em **categorias**, melhorando a navegabilidade e a descoberta de itens na plataforma. Isso proporciona aos usuários uma experiência de compra mais fluida e agradável.
-
-- **Documentação Interativa com Swagger**: A integração com **Swagger** oferece uma interface visual para explorar a API. Desenvolvedores e usuários podem testar endpoints diretamente na documentação, facilitando a compreensão da funcionalidade e a utilização da API.
-
-### Visão do Projeto
-
-O objetivo desta API é criar uma base sólida para o desenvolvimento de soluções de E-commerce, incorporando princípios de **arquitetura de software** e as melhores práticas de segurança de dados. A modularidade e a flexibilidade do NestJS permitem a fácil expansão e adaptação do sistema, tornando-o ideal para atender a diversas necessidades empresariais.
-
-Este projeto também serve como um recurso educacional, proporcionando uma oportunidade de aprendizado sobre desenvolvimento de aplicações com Node.js e NestJS, bem como a implementação de autenticação segura e controle de acesso.
-
-A **API de E-commerce** é mais do que uma simples ferramenta; é um passo em direção à criação de experiências de compra excepcionais e seguras, preparando o terreno para inovações futuras no comércio eletrônico.
 
