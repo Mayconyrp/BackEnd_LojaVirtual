@@ -1,4 +1,11 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class CreateUsuarioDto {
   @IsString()
@@ -14,7 +21,11 @@ export class CreateUsuarioDto {
   name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(20)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'password too weak',
+  })
   senha: string;
 
   /* @IsDate()
@@ -24,3 +35,11 @@ export class CreateUsuarioDto {
   atualizadoEm: Date;
   */
 }
+/*
+{
+  "cpf": "111.333.222-45",
+  "email": "teste@gmail.com",
+  "name": "Tenente",
+  "senha": "Testando@123"
+}
+  */

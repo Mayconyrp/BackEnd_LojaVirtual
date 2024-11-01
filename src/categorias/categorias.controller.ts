@@ -10,12 +10,12 @@ import {
 import { CategoriasService } from './categorias.service';
 import { CreateCategoriaDto } from './dto/create-categoria.dto';
 import { UpdateCategoriaDto } from './dto/update-categoria.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @ApiTags('categorias')
 @Controller('categorias')
 export class CategoriasController {
   constructor(private readonly categoriasService: CategoriasService) {}
-
+  @ApiBearerAuth('Authorization')
   @Post()
   create(@Body() createCategoriaDto: CreateCategoriaDto) {
     return this.categoriasService.create(createCategoriaDto);
@@ -35,7 +35,7 @@ export class CategoriasController {
   findCategoriaWithProdutosById(@Param('id') id: number) {
     return this.categoriasService.findCategoriaWithProdutosById(id);
   }
-
+  @ApiBearerAuth('Authorization')
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -43,7 +43,7 @@ export class CategoriasController {
   ) {
     return this.categoriasService.update(+id, updateCategoriaDto);
   }
-
+  @ApiBearerAuth('Authorization')
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.categoriasService.remove(+id);

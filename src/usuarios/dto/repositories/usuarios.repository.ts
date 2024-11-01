@@ -30,7 +30,11 @@ export class UsuariosRepository {
       where: { id },
     });
   }
-
+  async findEmail(email: string): Promise<UsuarioEntity> {
+    return this.prisma.usuario.findUnique({
+      where: { email },
+    });
+  }
   // Método para atualizar um usuário existente
   async update(
     id: number,
