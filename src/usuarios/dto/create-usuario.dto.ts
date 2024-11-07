@@ -28,6 +28,7 @@ export class CreateUsuarioDto {
   })
   senha: string;
 
+  
   /* @IsDate()
   criadoEm: Date;
 

@@ -13,6 +13,7 @@ export class UsuariosRepository {
     return this.prisma.usuario.create({
       data: {
         ...createUsuarioDto,
+        type_user: 'User',
         criadoEm: new Date(),
         atualizadoEm: new Date(),
       },

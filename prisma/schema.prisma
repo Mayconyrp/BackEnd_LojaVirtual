@@ -7,28 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Administrador {
-  id           Int       @id @default(autoincrement())
-  nome         String
-  email        String    @unique
-  senha        String
-  nivelAcesso  Int
-  criadoEm     DateTime  @default(now())
-  atualizadoEm DateTime  @updatedAt
-}
-
 model Usuario {
   id           Int       @id @default(autoincrement())
   cpf          String    @unique
   email        String    @unique
   name         String?
   senha        String
+  type_user    UserType 
   enderecos    Endereco[]
   criadoEm     DateTime  @default(now())
   atualizadoEm DateTime  @updatedAt
 
   compras      Compra[]
-  carrinhos    Carrinho[]
+}
+
+enum UserType {
+  Admin
+  User
+  
 }
 
 model Endereco {
@@ -61,18 +57,6 @@ model Produto {
   Categoria    Categoria @relation(fields: [categoriaId], references: [id])
 
   compras      Compra[]
-  carrinhos    Carrinho[]
-}
-
-model Carrinho {
-  id           Int       @id @default(autoincrement())
-  usuarioId    Int
-  Usuario      Usuario   @relation(fields: [usuarioId], references: [id])
-  produtoId    Int
-  Produto      Produto   @relation(fields: [produtoId], references: [id])
-  quantidade   Int       // Quantidade do produto no carrinho
-  criadoEm     DateTime  @default(now())
-  atualizadoEm DateTime  @updatedAt
 }
 
 model Compra {
