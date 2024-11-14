@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProdutosService } from './produtos.service';
 import { ProdutosController } from './produtos.controller';
-import { ProdutosRepository } from './dto/repositories/produtos.repository';
+import { ProdutosRepository } from './repositories/produtos.repository';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 

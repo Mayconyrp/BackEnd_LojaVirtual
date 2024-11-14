@@ -1,8 +1,8 @@
-import { CreateProdutoDto } from '../create-produto.dto';
+import { CreateProdutoDto } from '../dto/create-produto.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProdutoEntity } from 'src/produtos/entities/produto.entity';
-import { UpdateProdutoDto } from '../update-produto.dto'; // Corrigir o nome do arquivo para minusculo
+import { UpdateProdutoDto } from '../dto/update-produto.dto'; // Corrigir o nome do arquivo para minusculo
 
 @Injectable()
 export class ProdutosRepository {

@@ -23,12 +23,13 @@ async function bootstrap() {
     )
     .setVersion('1.0')
     .addTag('usuarios', 'Endpoints para gerenciamento de usuários.')
+    .addTag('auth', 'Endpoints para autenticação e autorização de usuários.')
     .addTag('categorias', 'Endpoints para gerenciar categorias de produtos.')
     .addTag(
       'produtos',
       'Endpoints para gerenciar produtos, incluindo criação, atualizações e recuperação.',
     )
-    .addTag('auth', 'Endpoints para autenticação e autorização de usuários.')
+    .addTag('Enderecos', 'Endpoints para autenticação e autorização de usuários.')
     .addBearerAuth(
       {
         type: 'http',
@@ -48,7 +49,7 @@ async function bootstrap() {
     credentials: true, // Permitir o uso de cookies/sessões
   });
 
-  const port = 3000;
+  const port = 30002;
   await app.listen(port);
   console.log(`Porta Do Swagger: http://localhost:${port}/api`);
 }

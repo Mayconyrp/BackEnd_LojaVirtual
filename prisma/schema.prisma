@@ -14,10 +14,9 @@ model Usuario {
   name         String?
   senha        String
   type_user    UserType 
-  enderecos    Endereco[]
   criadoEm     DateTime  @default(now())
   atualizadoEm DateTime  @updatedAt
-
+  enderecos    Endereco[]
   compras      Compra[]
 }
 
@@ -29,12 +28,15 @@ enum UserType {
 
 model Endereco {
   id        Int      @id @default(autoincrement())
-  rua       String
-  numero    Int
+  cep       String   
   cidade    String
   estado    String
+  rua       String
+  numero    String
+  complemento String
   usuarioId Int
   Usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+
 }
 
 model Categoria {

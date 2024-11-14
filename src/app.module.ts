@@ -8,9 +8,11 @@ import { ProdutosModule } from './produtos/produtos.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { EnderecoModule } from './endereco/enderecos.module';
+import { CorreiosModule } from './correios/correios.module';
 
 @Module({
-  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule],
+  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule, EnderecoModule, CorreiosModule],
   controllers: [AppController],
   providers: [
     AppService,
