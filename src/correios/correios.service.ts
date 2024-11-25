@@ -7,7 +7,8 @@ const URL_CORREIOS = 'https://viacep.com.br/ws/{CEP}/json/';
 
 @Injectable()
 export class CorreiosService {
-  constructor(private readonly httpService: HttpService) {}
+
+  constructor(private readonly httpService: HttpService) { }
 
   procurarPeloCep(cep: string): Promise<ReturnCep> {
     const url = URL_CORREIOS.replace('{CEP}', cep);
@@ -19,7 +20,6 @@ export class CorreiosService {
       .then((result) => {
         console.log('Resposta da API:', result.data);
 
-        // Verificar se a resposta tem o campo "erro" e se é 'true'
         if (result.data.erro) {
           console.log('CEP inválido:', cep);
           throw new BadRequestException('CEP inválido ou não encontrado.');
@@ -32,4 +32,5 @@ export class CorreiosService {
         throw new BadRequestException(`Erro na requisição de CEP: ${error.message}`);
       });
   }
+
 }

@@ -8,10 +8,11 @@ import { HttpModule } from '@nestjs/axios';
     timeout: 5000,
     maxRedirects: 5,
   }),
-  ],
+]
+  ,
   providers: [CorreiosService],
   controllers: [CorreiosController],
-  exports: [CorreiosService], 
+  exports: [CorreiosService],
 
 })
 export class CorreiosModule { }

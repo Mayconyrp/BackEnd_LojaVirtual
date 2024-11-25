@@ -10,9 +10,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { EnderecoModule } from './endereco/enderecos.module';
 import { CorreiosModule } from './correios/correios.module';
+import { MelhorEnvioModule } from './melhor_envio/melhor_envio.module';
 
 @Module({
-  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule, EnderecoModule, CorreiosModule],
+  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule, EnderecoModule, CorreiosModule, MelhorEnvioModule],
   controllers: [AppController],
   providers: [
     AppService,

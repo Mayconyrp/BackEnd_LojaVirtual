@@ -29,7 +29,9 @@ async function bootstrap() {
       'produtos',
       'Endpoints para gerenciar produtos, incluindo criação, atualizações e recuperação.',
     )
-    .addTag('Enderecos', 'Endpoints para autenticação e autorização de usuários.')
+    .addTag('enderecos', 'Endpoints para autenticação e autorização de usuários.')
+    .addTag('correios')
+    .addTag('melhor_envio')
     .addBearerAuth(
       {
         type: 'http',
@@ -49,7 +51,7 @@ async function bootstrap() {
     credentials: true, // Permitir o uso de cookies/sessões
   });
 
-  const port = 30002;
+  const port = 8080;
   await app.listen(port);
   console.log(`Porta Do Swagger: http://localhost:${port}/api`);
 }
