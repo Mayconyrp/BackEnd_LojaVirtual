@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpCode, HttpStatus, ForbiddenException, Request } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -16,6 +7,7 @@ import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { UserType } from 'src/roles/enums/role.enum';
 import { RolesGuard } from 'src/roles/guards/roles.guards';
+import { UsuarioPermissionGuard } from './guards/usuario-permission.guard'; // Importando o guard
 
 @ApiTags('usuarios')
 @Controller('usuarios')
@@ -23,12 +15,21 @@ export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @IsPublic()
+  @HttpCode(HttpStatus.CREATED)
+  @Post('/admin')
+  createAdmin(@Body() createUsuarioDto: CreateUsuarioDto) {
+    return this.usuariosService.createAdmin(createUsuarioDto);
+  }
+
+  @IsPublic()
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   create(@Body() createUsuarioDto: CreateUsuarioDto) {
     return this.usuariosService.create(createUsuarioDto);
   }
 
   @ApiBearerAuth('Authorization')
+  @HttpCode(HttpStatus.OK)
   @UseGuards(RolesGuard)
   @Roles(UserType.Admin)
   @Get()
@@ -37,6 +38,7 @@ export class UsuariosController {
   }
 
   @ApiBearerAuth('Authorization')
+  @HttpCode(HttpStatus.OK)
   @UseGuards(RolesGuard)
   @Roles(UserType.Admin)
   @Get('/email/:email')
@@ -45,6 +47,7 @@ export class UsuariosController {
   }
 
   @ApiBearerAuth('Authorization')
+  @HttpCode(HttpStatus.OK)
   @UseGuards(RolesGuard)
   @Roles(UserType.Admin)
   @Get(':id')
@@ -53,35 +56,20 @@ export class UsuariosController {
   }
 
   @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(RolesGuard, UsuarioPermissionGuard) 
   @Roles(UserType.User)
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateUsuarioDto: UpdateUsuarioDto) {
+  update(@Request() req, @Param('id') id: number, @Body() updateUsuarioDto: UpdateUsuarioDto) {
     return this.usuariosService.update(id, updateUsuarioDto);
   }
 
   @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @UseGuards(RolesGuard, UsuarioPermissionGuard)
   @Roles(UserType.User)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usuariosService.remove(+id);
+  remove(@Request() req, @Param('id') id: number) {
+    return this.usuariosService.remove(id);
   }
-/*
-  @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
-  @Roles(UserType.Admin)
-  @Get('/admin/rotaAdmin')
-  getRotaAdmin(): string {
-    return "Rota Admin";
-  }
-
-  @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
-  @Roles(UserType.User)
-  @Get('/user/rotaUser')
-  getRotaUser(): string {
-    return "Rota User";
-  }
-    */
 }

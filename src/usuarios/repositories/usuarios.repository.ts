@@ -8,6 +8,18 @@ import { UpdateUsuarioDto } from '../dto/update-usuario.dto';
 export class UsuariosRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+    // Método para criar um novo usuário
+    async createAdmin(createUsuarioDto: CreateUsuarioDto): Promise<UsuarioEntity> {
+      return this.prisma.usuario.create({
+        data: {
+          ...createUsuarioDto,
+          type_user: 'Admin',
+          criadoEm: new Date(),
+          atualizadoEm: new Date(),
+        },
+      });
+    }
+  
   // Método para criar um novo usuário
   async create(createUsuarioDto: CreateUsuarioDto): Promise<UsuarioEntity> {
     return this.prisma.usuario.create({

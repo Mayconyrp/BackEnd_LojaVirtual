@@ -11,9 +11,10 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { EnderecoModule } from './endereco/enderecos.module';
 import { CorreiosModule } from './correios/correios.module';
 import { MelhorEnvioModule } from './melhor_envio/melhor_envio.module';
+import { ComprasModule } from './compras/compras.module';
 
 @Module({
-  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule, EnderecoModule, CorreiosModule, MelhorEnvioModule],
+  imports: [UsuariosModule, CategoriasModule, ProdutosModule, AuthModule, EnderecoModule, CorreiosModule, MelhorEnvioModule, ComprasModule],
   controllers: [AppController],
   providers: [
     AppService,

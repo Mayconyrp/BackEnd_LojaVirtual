@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { CalcularPrecoDto } from './dto/calcular-preco.dto';
-import { RespostaAPIDTO } from './dto/response-api.dto'; // Usando o DTO original
-import { ReturnFreteMelhorEnvioDto } from './dto/return-frete.dto'; // Novo DTO de resposta transformada
+import { RespostaAPIDTO } from './dto/response-api.dto'; 
+import { ReturnFreteMelhorEnvioDto } from './dto/return-frete.dto'; 
 import { map } from 'rxjs';
+import { ProdutosService } from 'src/produtos/produtos.service';
 
 const dadosFixos = {
   cepOrigem: '50030-230', //Cep do Porto Digital, Recife - PE
-  altura: 10, 
-  largura: 20,
-  comprimento: 30, 
-  peso: 5,
 };
 
 @Injectable()
 export class MelhorEnvioService {
 
-  constructor(private readonly httpService: HttpService) { }
+  constructor(private readonly httpService: HttpService, private readonly produtoService: ProdutosService) { }
 
-  calcularFrete(calcularPrecoDto: CalcularPrecoDto): Promise<ReturnFreteMelhorEnvioDto[]> {
+  async calcularFrete(produtoId: number, calcularPrecoDto: CalcularPrecoDto): Promise<ReturnFreteMelhorEnvioDto[]> {
     const token = process.env.MELHOR_ENVIO_TOKEN;
     const URL_MELHOR_ENVIO = process.env.MELHOR_ENVIO_URL;
+
+    const produto = await this.produtoService.findOne(produtoId); 
 
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -28,16 +27,16 @@ export class MelhorEnvioService {
     };
 
     const body = {
-      from: { postal_code: dadosFixos.cepOrigem }, 
+      from: { postal_code: dadosFixos.cepOrigem },
       to: { postal_code: calcularPrecoDto.cepDestino },
       package: {
-        height: dadosFixos.altura, 
-        width: dadosFixos.largura, 
-        length: dadosFixos.comprimento, 
-        weight: dadosFixos.peso,
+        height: produto.height,
+        width: produto.width,
+        length: produto.length,
+        weight: produto.weight,
       },
     };
-
+  
     return this.httpService.post<RespostaAPIDTO[]>(URL_MELHOR_ENVIO, body, { headers })
       .pipe(
         map((response) => response.data.map((frete) => ({

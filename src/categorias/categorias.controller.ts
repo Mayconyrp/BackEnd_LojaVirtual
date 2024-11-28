@@ -41,7 +41,7 @@ export class CategoriasController {
     return this.categoriasService.findOne(id);
   }
   @IsPublic()
-  @Get(':id/produtos')
+  @Get('/produtos/:id')
   findCategoriaWithProdutosById(@Param('id') id: number) {
     return this.categoriasService.findCategoriaWithProdutosById(id);
   }

@@ -21,7 +21,13 @@ export class EnderecosRepository {
   async findAll(): Promise<EnderecosEntity[]> {
     return this.prisma.endereco.findMany();
   }
-
+  async findAllByUsuarioId(usuarioId: number): Promise<EnderecosEntity[]> {
+    return this.prisma.endereco.findMany({
+      where: { usuarioId },
+    });
+  }
+    
+  
   // Método para encontrar um único endereco pelo ID
   async findOne(id: number): Promise<EnderecosEntity> {
     const endereco = await this.prisma.endereco.findUnique({

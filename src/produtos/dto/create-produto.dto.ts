@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsBoolean, IsNumber } from 'class-validator';
+import { IsString, IsInt, IsBoolean, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateProdutoDto {
   @IsString()
@@ -8,16 +8,15 @@ export class CreateProdutoDto {
   imagem: string;
 
   @IsString()
-  descricao: string;
+  @IsOptional()
+  descricao?: string; 
 
   @IsNumber()
   preco: number;
 
   @IsString()
-  tamanho: string;
-
-  @IsString()
-  cor: string;
+  @IsOptional()
+  cor?: string; 
 
   @IsInt()
   estoque: number;
@@ -27,4 +26,16 @@ export class CreateProdutoDto {
 
   @IsInt()
   categoriaId: number;
+
+  @IsInt()
+  height: number;
+
+  @IsInt()
+  width: number;
+
+  @IsInt()
+  length: number;
+
+  @IsInt()
+  weight: number;
 }

@@ -24,11 +24,10 @@ export class CreateUsuarioDto {
   @MinLength(4)
   @MaxLength(20)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
+    message: 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, e um número ou caractere especial.',
   })
   senha: string;
-
-  
+    
   /* @IsDate()
   criadoEm: Date;
 

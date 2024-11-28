@@ -22,8 +22,8 @@ async function bootstrap() {
       'Esta API foi desenvolvida para fins educacionais, proporcionando uma plataforma abrangente para o gerenciamento de usuários, categorias e produtos. Além disso, incorpora níveis de acesso, autenticação e segue um padrão de arquitetura moderno, permitindo uma imersão prática em conceitos fundamentais de desenvolvimento de software.',
     )
     .setVersion('1.0')
-    .addTag('usuarios', 'Endpoints para gerenciamento de usuários.')
-    .addTag('auth', 'Endpoints para autenticação e autorização de usuários.')
+    .addTag('auth', 'Endpoints para autenticar e receber o token.')
+    .addTag('usuarios', 'Endpoints para cadastro e gerenciamento de usuários.')
     .addTag('categorias', 'Endpoints para gerenciar categorias de produtos.')
     .addTag(
       'produtos',
@@ -32,6 +32,7 @@ async function bootstrap() {
     .addTag('enderecos', 'Endpoints para autenticação e autorização de usuários.')
     .addTag('correios')
     .addTag('melhor_envio')
+    .addTag('compras')
     .addBearerAuth(
       {
         type: 'http',

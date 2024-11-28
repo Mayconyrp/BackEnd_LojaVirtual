@@ -7,15 +7,17 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
+  ForbiddenException,
 } from '@nestjs/common';
 import { EnderecosService } from './enderecos.service';
 import { CreateEnderecosDto } from './dto/create-enderecos.dto';
 import { UpdateEnderecosDto } from './dto/update-enderecos.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guards';
 import { UserType } from 'src/roles/enums/role.enum';
+import { EnderecoPermissionGuard } from './guards/endereco-permission.guard';  // Importando o Guard
 
 @ApiTags('enderecos')
 @Controller('enderecos')
@@ -23,38 +25,60 @@ export class EnderecosController {
   constructor(private readonly enderecosService: EnderecosService) {}
 
   @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
+  @UseGuards(RolesGuard, EnderecoPermissionGuard)
   @Roles(UserType.User)
   @Post()
-  create(@Body() createEnderecosDto: CreateEnderecosDto) {
+  create(@Request() req, @Body() createEnderecosDto: CreateEnderecosDto) {
     return this.enderecosService.create(createEnderecosDto);
   }
 
-  @IsPublic()
+  @ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard)
+  @Roles(UserType.Admin)
   @Get()
-  findAll() {
+  findAll(@Request() req) {
     return this.enderecosService.findAll();
   }
 
-  @IsPublic()
+  @ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard)
+  @Roles(UserType.Admin)
+  @Get('/usuario/:id')
+  async findAllByUserId(@Param('id') id: number) {
+    return this.enderecosService.findAllByUsuarioId(id);
+  }
+  
+
+  @ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard)
+  @Roles(UserType.User)
+  @Get('/me')
+  async findAllByUser(@Request() req) {
+    const usuarioId = req.user.id;
+    return this.enderecosService.findAllByUsuarioId(usuarioId);
+  }
+
+  @ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard, EnderecoPermissionGuard) 
+  @Roles(UserType.User)
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  async findOne(@Request() req, @Param('id') id: number) {
     return this.enderecosService.findOne(id);
   }
 
   @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
+  @UseGuards(RolesGuard, EnderecoPermissionGuard)  
   @Roles(UserType.User)
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateEnderecosDto: UpdateEnderecosDto) {
+  async update(@Request() req, @Param('id') id: number, @Body() updateEnderecosDto: UpdateEnderecosDto) {
     return this.enderecosService.update(id, updateEnderecosDto);
   }
 
   @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
+  @UseGuards(RolesGuard, EnderecoPermissionGuard) 
   @Roles(UserType.User)
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  async remove(@Request() req, @Param('id') id: number) {
     return this.enderecosService.remove(id);
   }
 }

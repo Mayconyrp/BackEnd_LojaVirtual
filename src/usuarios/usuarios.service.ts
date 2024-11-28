@@ -8,6 +8,16 @@ import * as bcrypt from 'bcrypt';
 export class UsuariosService {
   constructor(private readonly repository: UsuariosRepository) {}
 
+  async createAdmin(createUsuarioDto: CreateUsuarioDto) {
+    const hashedPassword = await bcrypt.hash(createUsuarioDto.senha, 10);
+    const usuario = {
+      ...createUsuarioDto,
+      
+      senha: hashedPassword,
+    };
+    return this.repository.createAdmin(usuario);
+  }
+
   async create(createUsuarioDto: CreateUsuarioDto) {
     const hashedPassword = await bcrypt.hash(createUsuarioDto.senha, 10);
     const usuario = {

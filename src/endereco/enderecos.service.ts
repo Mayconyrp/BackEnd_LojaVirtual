@@ -39,7 +39,11 @@ export class EnderecosService {
   findAll() {
     return this.repository.findAll();
   }
-
+  
+  async findAllByUsuarioId(usuarioId: number) {
+    return this.repository.findAllByUsuarioId(usuarioId);
+  }
+  
   findOne(id: number) {
     return this.repository.findOne(id);
   }

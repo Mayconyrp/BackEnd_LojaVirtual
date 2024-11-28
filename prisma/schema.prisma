@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Usuario {
-  id           Int       @id @default(autoincrement())
-  cpf          String    @unique
-  email        String    @unique
+  id           Int        @id @default(autoincrement())
+  cpf          String     @unique
+  email        String     @unique
   name         String?
   senha        String
-  type_user    UserType 
-  criadoEm     DateTime  @default(now())
-  atualizadoEm DateTime  @updatedAt
+  type_user    UserType
+  criadoEm     DateTime   @default(now())
+  atualizadoEm DateTime   @updatedAt
   enderecos    Endereco[]
   compras      Compra[]
 }
@@ -23,20 +23,18 @@ model Usuario {
 enum UserType {
   Admin
   User
-  
 }
 
 model Endereco {
-  id        Int      @id @default(autoincrement())
-  cep       String   
-  cidade    String
-  estado    String
-  rua       String
-  numero    String
+  id          Int     @id @default(autoincrement())
+  cep         String
+  cidade      String
+  estado      String
+  rua         String
+  numero      String
   complemento String
-  usuarioId Int
-  Usuario   Usuario  @relation(fields: [usuarioId], references: [id])
-
+  usuarioId   Int
+  Usuario     Usuario @relation(fields: [usuarioId], references: [id])
 }
 
 model Categoria {
@@ -46,29 +44,38 @@ model Categoria {
 }
 
 model Produto {
-  id           Int       @id @default(autoincrement())
-  imagem      String
-  nome         String
-  descricao    String?
-  preco        Float
-  tamanho      String    
-  cor          String?   
-  estoque      Int       
-  disponivel   Boolean   
-  categoriaId  Int
-  Categoria    Categoria @relation(fields: [categoriaId], references: [id])
+  id         Int     @id @default(autoincrement())
+  imagem     String
+  nome       String
+  descricao  String?
+  preco      Float
+  cor        String?
+  estoque    Int
+  disponivel Boolean
+  height     Int  @default(0)
+  width      Int  @default(0)
+  length     Int  @default(0)
+  weight     Int  @default(0)
 
-  compras      Compra[]
+  categoriaId Int
+  Categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  compras Compra[]
 }
 
 model Compra {
-  id            Int       @id @default(autoincrement())
-  notaFiscal    String    // Número da nota fiscal
-  tipoPagamento String    // Tipo de pagamento (e.g., "Cartão", "Boleto")
-  produtoId     Int
-  Produto       Produto   @relation(fields: [produtoId], references: [id])
-  usuarioId     Int
-  Usuario       Usuario   @relation(fields: [usuarioId], references: [id])
-  dataCompra    DateTime  @default(now())
+  id                Int       @id @default(autoincrement())
+  notaFiscal        String    // Número da nota fiscal
+  tipoPagamento     String    // Tipo de pagamento (e.g., "Cartão", "Boleto")
+  produtoId         Int
+  Produto           Produto   @relation(fields: [produtoId], references: [id])
+  usuarioId         Int
+  Usuario           Usuario   @relation(fields: [usuarioId], references: [id])
+  dataCompra        DateTime  @default(now())
+  
+  nomeTransportadora String?  
+  precoFrete         Float?   
+  tempoEntrega       String?  
+  empresaFrete       String?  
+  logoTransportadora String?  
 }
-
