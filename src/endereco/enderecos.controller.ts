@@ -17,7 +17,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guards';
 import { UserType } from 'src/roles/enums/role.enum';
-import { EnderecoPermissionGuard } from './guards/endereco-permission.guard';  // Importando o Guard
+import { EnderecoPermissionGuard } from './guards/endereco-permission.guard';  
 
 @ApiTags('enderecos')
 @Controller('enderecos')
@@ -34,12 +34,13 @@ export class EnderecosController {
 
   @ApiBearerAuth('Authorization')
   @UseGuards(RolesGuard)
-  @Roles(UserType.Admin)
-  @Get()
-  findAll(@Request() req) {
-    return this.enderecosService.findAll();
+  @Roles(UserType.User)
+  @Get('/me')
+  async findAllByUser(@Request() req) {
+    const usuarioId = req.user.id;
+    return this.enderecosService.findAllByUsuarioId(usuarioId);
   }
-
+  
   @ApiBearerAuth('Authorization')
   @UseGuards(RolesGuard)
   @Roles(UserType.Admin)
@@ -48,24 +49,6 @@ export class EnderecosController {
     return this.enderecosService.findAllByUsuarioId(id);
   }
   
-
-  @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard)
-  @Roles(UserType.User)
-  @Get('/me')
-  async findAllByUser(@Request() req) {
-    const usuarioId = req.user.id;
-    return this.enderecosService.findAllByUsuarioId(usuarioId);
-  }
-
-  @ApiBearerAuth('Authorization')
-  @UseGuards(RolesGuard, EnderecoPermissionGuard) 
-  @Roles(UserType.User)
-  @Get(':id')
-  async findOne(@Request() req, @Param('id') id: number) {
-    return this.enderecosService.findOne(id);
-  }
-
   @ApiBearerAuth('Authorization')
   @UseGuards(RolesGuard, EnderecoPermissionGuard)  
   @Roles(UserType.User)
@@ -82,3 +65,21 @@ export class EnderecosController {
     return this.enderecosService.remove(id);
   }
 }
+
+//Outras Querys
+/*@ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard)
+  @Roles(UserType.Admin)
+  @Get()
+  findAll(@Request() req) {
+    return this.enderecosService.findAll();
+  }
+
+  /*@ApiBearerAuth('Authorization')
+  @UseGuards(RolesGuard, EnderecoPermissionGuard) 
+  @Roles(UserType.User)
+  @Get(':id')
+  async findOne(@Request() req, @Param('id') id: number) {
+    return this.enderecosService.findOne(id);
+  }
+*/

@@ -78,4 +78,5 @@ model Compra {
   tempoEntrega       String?  
   empresaFrete       String?  
   logoTransportadora String?  
+  cepDestino         String  
 }

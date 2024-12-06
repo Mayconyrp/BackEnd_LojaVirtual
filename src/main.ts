@@ -17,11 +17,12 @@ async function bootstrap() {
 
   // Configurar o Swagger
   const config = new DocumentBuilder()
-    .setTitle('API de E-Commerce para Estudos')
+    .setTitle('API E-Commerce')
     .setDescription(
       'Esta API foi desenvolvida para fins educacionais, proporcionando uma plataforma abrangente para o gerenciamento de usuários, categorias e produtos. Além disso, incorpora níveis de acesso, autenticação e segue um padrão de arquitetura moderno, permitindo uma imersão prática em conceitos fundamentais de desenvolvimento de software.',
     )
     .setVersion('1.0')
+    .addTag('MyProfile')
     .addTag('auth', 'Endpoints para autenticar e receber o token.')
     .addTag('usuarios', 'Endpoints para cadastro e gerenciamento de usuários.')
     .addTag('categorias', 'Endpoints para gerenciar categorias de produtos.')

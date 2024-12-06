@@ -1,58 +1,38 @@
-// src/compras/compras.service.ts
-
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';  
+import { ComprasRepository } from './repositories/compras.repository';
 import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
-import { NotaFiscalService } from '../compras/utils/nota-fiscal.service'; 
+import { NotaFiscalService } from './utils/nota-fiscal.service';
 
 @Injectable()
 export class ComprasService {
   constructor(
-    private readonly prisma: PrismaService,
-    private readonly notaFiscalService: NotaFiscalService, 
+    private readonly comprasRepository: ComprasRepository,
+    private readonly notaFiscalService: NotaFiscalService,
   ) {}
 
-  async create(createCompraDto: CreateCompraDto) {
-    const notaFiscal = this.notaFiscalService.gerarNotaFiscal(); 
-
-    const compra = await this.prisma.compra.create({
-      data: {
-        notaFiscal,
-        tipoPagamento: createCompraDto.tipoPagamento,
-        produtoId: createCompraDto.produtoId,
-        usuarioId: createCompraDto.usuarioId,
-        dataCompra: createCompraDto.dataCompra,
-        nomeTransportadora: createCompraDto.nomeTransportadora,
-        precoFrete: createCompraDto.precoFrete,
-        tempoEntrega: createCompraDto.tempoEntrega,
-        empresaFrete: createCompraDto.empresaFrete,
-        logoTransportadora: createCompraDto.logoTransportadora,
-      },
-    });
-    return compra;
+  create(createCompraDto: CreateCompraDto) {
+    const notaFiscal = this.notaFiscalService.gerarNotaFiscal();
+    return this.comprasRepository.create(createCompraDto, notaFiscal);
   }
 
-  async findAll() {
-    return this.prisma.compra.findMany();
+  findAll() {
+    return this.comprasRepository.findAll();
   }
 
-  async findOne(id: number) {
-    return this.prisma.compra.findUnique({
-      where: { id },
-    });
+  findOne(id: number) {
+    return this.comprasRepository.findOne(id);
   }
 
-  async update(id: number, updateCompraDto: UpdateCompraDto) {
-    return this.prisma.compra.update({
-      where: { id },
-      data: updateCompraDto,
-    });
+  findByUserId(usuarioId: number) {
+    return this.comprasRepository.findByUserId(usuarioId); 
   }
 
-  async remove(id: number) {
-    return this.prisma.compra.delete({
-      where: { id },
-    });
+  update(id: number, updateCompraDto: UpdateCompraDto) {
+    return this.comprasRepository.update(id, updateCompraDto);
+  }
+
+  remove(id: number) {
+    return this.comprasRepository.remove(id);
   }
 }

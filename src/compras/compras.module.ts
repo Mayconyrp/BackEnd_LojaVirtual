@@ -4,6 +4,7 @@ import { ComprasController } from './compras.controller';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotaFiscalService } from './utils/nota-fiscal.service';
 import { JwtModule } from '@nestjs/jwt';
+import { ComprasRepository } from './repositories/compras.repository';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   controllers: [ComprasController],
-  providers: [ComprasService, PrismaService, NotaFiscalService],
+  providers: [ComprasService, PrismaService, NotaFiscalService,ComprasRepository],
 })
 export class ComprasModule {}

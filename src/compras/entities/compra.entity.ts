@@ -8,6 +8,7 @@ export class CompraEntity implements Compra {
     dataCompra: Date;
     nomeTransportadora: string;
     precoFrete: number;
+    cepDestino: string;
     tempoEntrega: string;
     empresaFrete: string;
     logoTransportadora: string;

@@ -1,9 +1,6 @@
 import { IsString, IsNotEmpty, IsNumber, IsOptional, IsDateString, Min, MaxLength, IsEnum } from 'class-validator';
 
 export class CreateCompraDto {
-    @IsNumber()
-    id: number;
-
     @IsString()
     @IsNotEmpty()
     tipoPagamento: string;
