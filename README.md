@@ -1,100 +1,117 @@
-## Descrição do Projeto
+# API de E-commerce
 
-Bem-vindo à **API de E-commerce**, uma solução robusta e escalável desenvolvida com o **NestJS**, um framework inovador para construção de aplicações eficientes em Node.js. Este projeto visa fornecer uma plataforma completa para gerenciamento de produtos, com foco em segurança, desempenho e experiência do usuário.
+Bem-vindo à API de E-commerce, uma solução robusta e escalável desenvolvida com o [NestJS](https://nestjs.com/), um framework moderno e eficiente para aplicações em Node.js. Este projeto foi criado para oferecer uma plataforma completa para o gerenciamento de produtos, usuários e operações relacionadas, com foco em segurança, desempenho e experiência do usuário.
 
-### Funcionalidades Destacadas
+## 📖 Visão Geral
 
-- **Autenticação e Autorização Segura**: Implemente o padrão **JSON Web Tokens (JWT)** para garantir que as interações com a API sejam seguras. Usuários e administradores podem fazer login de maneira eficiente, com segurança reforçada nas rotas que exigem credenciais.
+A API de E-commerce foi projetada com uma arquitetura modular e flexível, garantindo fácil expansão e adaptação às demandas de negócios. Com princípios sólidos de arquitetura de software e as melhores práticas em segurança de dados, ela oferece um ambiente confiável para o desenvolvimento de soluções personalizadas para comércio eletrônico.
 
-- **Gerenciamento de Acesso Granular**: Diferencie claramente as permissões entre **usuários comuns** e **administradores**. Essa abordagem permite um controle mais preciso sobre as operações que cada tipo de usuário pode executar, assegurando que dados sensíveis permaneçam protegidos.
+---
 
-- **CRUD Completo para Produtos**: Permita a criação, leitura, atualização e exclusão de produtos de forma intuitiva e eficiente. A API facilita o gerenciamento de inventário, possibilitando que administradores adicionem ou editem produtos conforme necessário.
+## 🚀 Funcionalidades
 
-- **Estruturação por Categorias**: Organize produtos em **categorias**, melhorando a navegabilidade e a descoberta de itens na plataforma. Isso proporciona aos usuários uma experiência de compra mais fluida e agradável.
+### 🔐 **Autenticação e Autorização Segura**
+- Implementação de **JSON Web Tokens (JWT)** para autenticação e autorização.
+- Rotas públicas e protegidas para diferentes níveis de acesso.
+- Controle granular de permissões para usuários e administradores.
 
-- **Documentação Interativa com Swagger**: A integração com **Swagger** oferece uma interface visual para explorar a API. Desenvolvedores e usuários podem testar endpoints diretamente na documentação, facilitando a compreensão da funcionalidade e a utilização da API.
+### 📦 **Gerenciamento Completo de Produtos**
+- Endpoints para **CRUD de produtos** (criação, leitura, atualização e exclusão).
+- Integração com categorias para organização e melhor navegabilidade.
 
-### Visão do Projeto
+### 🗂️ **Estruturação por Categorias**
+- Organização de produtos em categorias para facilitar a descoberta e melhorar a experiência de compra.
 
-O objetivo desta API é criar uma base sólida para o desenvolvimento de soluções de E-commerce, incorporando princípios de **arquitetura de software** e as melhores práticas de segurança de dados. A modularidade e a flexibilidade do NestJS permitem a fácil expansão e adaptação do sistema, tornando-o ideal para atender a diversas necessidades empresariais.
+### 🏠 **Gerenciamento de Endereços**
+- Endpoints para cadastro, edição e exclusão de endereços.
+- Integração com a API dos Correios para validação de CEPs.
 
-Este projeto também serve como um recurso educacional, proporcionando uma oportunidade de aprendizado sobre desenvolvimento de aplicações com Node.js e NestJS, bem como a implementação de autenticação segura e controle de acesso.
+### 🚚 **Simulação de Frete com Melhor Envio**
+- Integração com a API do Melhor Envio para cálculo de frete com base nos produtos cadastrados.
 
-A **API de E-commerce** é mais do que uma simples ferramenta; é um passo em direção à criação de experiências de compra excepcionais e seguras, preparando o terreno para inovações futuras no comércio eletrônico.
+### 🛒 **Gestão de Compras**
+- Cadastro e recuperação de compras associadas a usuários.
+- Endpoints para visualizar compras pessoais e por usuários específicos (admin).
 
+### 🛠️ **Documentação Interativa com Swagger**
+- Interface gráfica para explorar e testar endpoints diretamente na documentação.
+- Fácil compreensão das funcionalidades e rápida integração por desenvolvedores.
 
+---
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## 🌐 Estrutura de Endpoints
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### **Autenticação**
+- `POST /login` - Realiza login e retorna o token JWT.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### **Usuários**
+- `POST /usuarios/admin` - Cadastro de um administrador.
+- `POST /usuarios` - Cadastro de um usuário comum.
+- `GET /usuarios` - Lista todos os usuários (admin).
+- `GET /usuarios/email/{email}` - Consulta um usuário pelo e-mail.
+- `GET /usuarios/{id}` - Consulta um usuário pelo ID.
+- `PATCH /usuarios/{id}` - Atualiza dados de um usuário.
+- `DELETE /usuarios/{id}` - Exclui um usuário.
 
-## Description
+### **Categorias**
+- `POST /categorias` - Criação de categorias.
+- `GET /categorias` - Lista todas as categorias.
+- `GET /categorias/{id}` - Consulta uma categoria pelo ID.
+- `PATCH /categorias/{id}` - Atualiza uma categoria.
+- `DELETE /categorias/{id}` - Exclui uma categoria.
+- `GET /categorias/{id}/produtos` - Lista produtos de uma categoria.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### **Produtos**
+- `POST /produtos` - Cadastro de produtos.
+- `GET /produtos` - Lista todos os produtos.
+- `GET /produtos/{id}` - Consulta um produto pelo ID.
+- `PATCH /produtos/{id}` - Atualiza um produto.
+- `DELETE /produtos/{id}` - Exclui um produto.
 
-## Installation
+### **Endereços**
+- `POST /enderecos` - Cadastro de um endereço.
+- `GET /enderecos/me` - Recupera os endereços do usuário logado.
+- `GET /enderecos/usuario/{id}` - Lista endereços de um usuário específico.
+- `PATCH /enderecos/{id}` - Atualiza um endereço.
+- `DELETE /enderecos/{id}` - Exclui um endereço.
 
-```bash
-$ npm install
-```
+### **Correios**
+- `GET /correios/{cep}` - Consulta e validação de CEP usando a API dos Correios.
 
-## Running the app
+### **Melhor Envio**
+- `POST /melhor-envio/preco/{produtoId}` - Calcula o frete de um produto.
 
-```bash
-# development
-$ npm run start
+### **Compras**
+- `POST /compras` - Realiza uma compra.
+- `GET /compras/me` - Lista compras do usuário logado.
+- `GET /compras/usuario/{id}` - Lista compras de um usuário específico (admin).
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## 🛠️ Tecnologias Utilizadas
+- **NestJS** - Framework back-end em Node.js.
+- **TypeScript** - Superset para JavaScript, utilizado para maior segurança e escalabilidade.
+- **JWT** - Para autenticação e autorização.
+- **Swagger** - Documentação interativa da API.
+- **API dos Correios** - Validação de endereços.
+- **Melhor Envio** - Cálculo de frete.
 
-## Test
+---
 
-```bash
-# unit tests
-$ npm run test
+## 💻 Como Começar
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-
+1. Clone este repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   
+2. Instale as dependências:
+   ```bash
+   npm install
+   
+3. Execute as migrações do banco de dados:
+   ```bash
+   npx prisma migrate dev
+   
+4. Inicie o servidor:
+   ```bash
+   npm run install
