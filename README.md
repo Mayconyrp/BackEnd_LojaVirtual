@@ -40,6 +40,7 @@ A API de E-commerce foi projetada com uma arquitetura modular e flexível, garan
 ---
 
 ## 🌐 Estrutura de Endpoints
+**Atenção:** Algumas rotas são protegidas e exigem permissões de administrador.  
 
 ### **Autenticação**
 - `POST /login` - Realiza login e retorna o token JWT.
